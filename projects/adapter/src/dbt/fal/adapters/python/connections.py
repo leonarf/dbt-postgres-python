@@ -17,14 +17,15 @@ from typing import (
     Callable,
 )
 
-from dbt.exceptions import (
-    NotImplementedError,
+from dbt.adapters.exceptions import (
     InvalidConnectionError,
-    DbtInternalError,
-    CompilationError,
     FailedToConnectError,
 )
-from dbt.contracts.connection import (
+from dbt.exceptions import (
+    DbtInternalError,
+    CompilationError,
+)
+from dbt.adapters.contracts.connection import (
     Connection,
     Identifier,
     ConnectionState,
@@ -32,9 +33,9 @@ from dbt.contracts.connection import (
     LazyHandle,
     AdapterResponse,
 )
-from dbt.events import AdapterLogger
-from dbt.events.functions import fire_event
-from dbt.events.types import (
+from dbt.adapters.events.logging import AdapterLogger
+from dbt_common.events.functions import fire_event
+from dbt.adapters.events.types import (
     NewConnection,
     ConnectionReused,
     ConnectionLeftOpen,
