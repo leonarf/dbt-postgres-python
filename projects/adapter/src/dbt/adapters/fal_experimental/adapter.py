@@ -8,7 +8,7 @@ from typing import Any, Optional
 
 from dbt.adapters.base.impl import BaseAdapter
 from dbt.config.runtime import RuntimeConfig
-from dbt.contracts.connection import AdapterResponse
+from dbt.adapters.contracts.connection import AdapterResponse
 from dbt.flags import get_flags, Namespace
 
 from fal import FalServerlessHost, isolated

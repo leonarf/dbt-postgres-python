@@ -12,18 +12,17 @@ from typing import (
 
 from dbt.adapters.factory import get_adapter
 from dbt.exceptions import (
-    NotImplementedError,
     DbtRuntimeError,
 )
 from dbt.contracts.graph.nodes import ResultNode
 from dbt.adapters.protocol import AdapterConfig, ConnectionManagerProtocol
-from dbt.events.functions import fire_event
-from dbt.events.types import (
+from dbt_common.events.functions import fire_event
+from dbt.adapters.events.types import (
     CodeExecution,
     CodeExecutionStatus,
 )
 from dbt.adapters.base.meta import AdapterMeta, available
-from dbt.contracts.connection import Credentials, Connection, AdapterResponse
+from dbt.adapters.contracts.connection import Credentials, Connection, AdapterResponse
 
 
 def log_code_execution(code_execution_function):

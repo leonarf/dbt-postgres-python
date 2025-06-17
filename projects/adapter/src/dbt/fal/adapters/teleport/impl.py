@@ -1,7 +1,6 @@
 import abc
 from typing import List, Union
 
-from dbt.exceptions import NotImplementedError
 from dbt.adapters.base.relation import BaseRelation
 from dbt.adapters.base.impl import BaseAdapter
 

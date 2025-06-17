@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from typing import Any, Union
 
 from dbt.adapters.base.relation import BaseRelation
-from dbt.contracts.relation import ComponentName
+from dbt.adapters.contracts.relation import ComponentName
 
 @dataclass
 class TeleportInfo:
