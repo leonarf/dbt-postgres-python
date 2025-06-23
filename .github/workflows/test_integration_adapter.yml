@@ -27,7 +27,7 @@ jobs:
         profile:
           - postgres
         dbt_version:
-          - "1.7.16"
+          - "1.9.0"
         python:
           - "3.11"
           - "3.12"

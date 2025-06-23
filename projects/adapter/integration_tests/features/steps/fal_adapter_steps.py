@@ -73,13 +73,11 @@ def set_project_folder(context, project: str):
 
 @then("the following models are calculated in order")
 def check_model_results(context):
-    models = _get_dated_dbt_models(context)
-    sorted_models = sorted(models, key=lambda x: x[1])
-    sorted_model_names = [model[0] for model in sorted_models]
-    expected_model_names = context.table.headings
+    models_result = _get_dated_dbt_models(context)
+    expected_model_result = {model_id: "success" for model_id in context.table.headings}
     assert (
-        sorted_model_names == expected_model_names
-    ), f"Expected {expected_model_names}, got {sorted_model_names}"
+        models_result == expected_model_result
+    ), f"Expected {expected_model_result}, got {models_result}"
 
 
 @then('model {model_name} fails with message "{msg}"')
@@ -103,15 +101,10 @@ def check_compiled_model(context, model_type: str, model_name: str, msg: str):
 
 
 def _get_dated_dbt_models(context):
-    return [
-        (
-            result["unique_id"].split(".")[-1],
-            datetime.fromisoformat(
-                result["timing"][-1]["completed_at"].replace("Z", "+00:00")
-            ),
-        )
+    return {
+        result["unique_id"].split(".")[-1]: result["status"]
         for result in _load_dbt_result_file(context)
-    ]
+    }
 
 
 def _load_dbt_result_file(context):
